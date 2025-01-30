@@ -17,17 +17,12 @@ body {
   z-index: -1;
 }
 
+/* Background shapes */
 .shape {
   position: absolute;
   background: rgba(255, 255, 255, 0.1); /* Subtle white shapes */
   border-radius: 50%;
   animation: float 6s infinite ease-in-out;
-  transition: transform 0.3s ease, background 0.3s ease;
-}
-
-.shape:hover {
-  background: rgba(255, 255, 255, 0.3); /* Brighter on hover */
-  transform: scale(1.2);
 }
 
 .shape1 {
@@ -62,20 +57,89 @@ body {
   animation-duration: 9s;
 }
 
-.shape5 {
-  width: 80px;
-  height: 80px;
+/* Logo styles */
+.logo {
+  position: absolute;
+  width: 50px; /* Adjust size as needed */
+  height: 50px;
+  animation: float 6s infinite ease-in-out;
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5)); /* Subtle shadow */
+  transition: all 0.3s ease; /* Smooth transition for all properties */
+}
+
+.logo:hover {
+  transform: scale(1.5); /* Scale up by 50% on hover */
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 1)); /* Stronger glow effect */
+  background: rgba(255, 255, 255, 0.2); /* Brighter background highlight */
+  border-radius: 15px; /* More pronounced rounded corners */
+  padding: 8px; /* Add more padding for a sleek look */
+}
+
+/* Position and animation duration for each logo */
+.python {
+  top: 10%;
+  left: 5%;
+  animation-duration: 8s;
+}
+
+.javascript {
+  top: 20%;
+  left: 80%;
+  animation-duration: 10s;
+}
+
+.html {
+  top: 50%;
+  left: 10%;
+  animation-duration: 12s;
+}
+
+.css {
   top: 60%;
   left: 70%;
+  animation-duration: 9s;
+}
+
+.nodejs {
+  top: 30%;
+  left: 40%;
   animation-duration: 7s;
 }
 
-.shape6 {
-  width: 180px;
-  height: 180px;
-  top: 20%;
-  left: 40%;
+.react {
+  top: 70%;
+  left: 20%;
   animation-duration: 11s;
+}
+
+.mongodb {
+  top: 40%;
+  left: 90%;
+  animation-duration: 8s;
+}
+
+.cpp {
+  top: 80%;
+  left: 50%;
+  animation-duration: 10s;
+}
+
+.c {
+  top: 10%;
+  left: 60%;
+  animation-duration: 12s;
+}
+
+.lua {
+  top: 90%;
+  left: 30%;
+  animation-duration: 9s;
+}
+
+.java {
+  top: 20%;
+  left: 30%;
+  animation-duration: 7s;
 }
 
 @keyframes float {
@@ -154,6 +218,65 @@ header p {
 
 .github:hover {
   color: #6cc644;
+}
+
+/* Hidden Puzzle Styles */
+.secret-puzzle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+#secret-button {
+  background: #333;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#secret-button:hover {
+  background: #555;
+}
+
+.hidden {
+  display: none;
+}
+
+#secret-message {
+  margin-top: 10px;
+  font-size: 1.2rem;
+  color: #ff6f61;
+}
+
+/* Hidden Treasure Styles */
+.hidden-treasure {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+
+.treasure-chest {
+  width: 50px;
+  height: 30px;
+  background: #d4af37;
+  border: 2px solid #b8860b;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.treasure-chest:hover {
+  transform: scale(1.1);
+}
+
+#treasure-message {
+  margin-top: 10px;
+  font-size: 1.2rem;
+  color: #d4af37;
 }
 
 @keyframes fadeIn {
