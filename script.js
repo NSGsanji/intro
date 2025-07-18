@@ -191,7 +191,7 @@ function showTooltip(element, message) {
     tooltip.style.bottom = '-40px';
     tooltip.style.left = '50%';
     tooltip.style.transform = 'translateX(-50%)';
-    tooltip.style.background = '#000';
+    tooltip.style.background = '#0000';
     tooltip.style.color = '#fff';
     tooltip.style.padding = '5px 10px';
     tooltip.style.borderRadius = '4px';
