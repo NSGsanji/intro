@@ -13,7 +13,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 window.addEventListener('scroll', () => {
   const header = document.querySelector('header');
   if (window.scrollY > 100) {
-    header.style.background = 'rgba(255, 255, 255, 0.98)';
+    header.style.background = 'rgba(255, 205, 255, 0.98)';
     header.style.borderBottom = '1px solid #ccc';
   } else {
     header.style.background = 'rgba(255, 255, 255, 0.95)';
