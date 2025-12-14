@@ -530,6 +530,57 @@
     .social-link:hover::after {
         opacity: 1;
     }
+    /* Visitor Counter */
+#visitor-counter {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 8px 14px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid #e0e0e0;
+  backdrop-filter: blur(8px);
+
+  font-size: 14px;
+  font-weight: 500;
+  color: #000;
+
+  z-index: 9999;
+
+  opacity: 0;
+  transform: translateY(12px);
+  animation: counterFadeIn 0.8s ease forwards;
+}
+
+.eye-icon {
+  width: 18px;
+  height: 18px;
+  opacity: 0.75;
+}
+
+/* Fade-in animation */
+@keyframes counterFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Count pop animation */
+.count-pop {
+  animation: pop 0.35s ease;
+}
+
+@keyframes pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
   </style>
 </head>
 <body>
@@ -946,3 +997,55 @@
         copyLink: copySocialLink,
         trackClick: trackSocialClick
     };
+    // Visitor Counter
+async function trackAndLoadVisits() {
+  try {
+    // Track visit (backend handles IP)
+    fetch('/api/track', { method: 'POST' });
+
+    // Get total visits
+    const res = await fetch('/api/visits');
+    const data = await res.json();
+
+    animateVisitCount(data.total);
+  } catch (err) {
+    console.warn('Visitor counter failed');
+  }
+}
+
+function animateVisitCount(target) {
+  const el = document.getElementById('visit-number');
+  let current = 0;
+
+  const interval = setInterval(() => {
+    current++;
+    el.textContent = current;
+    el.classList.add('count-pop');
+
+    setTimeout(() => el.classList.remove('count-pop'), 150);
+
+    if (current >= target) {
+      clearInterval(interval);
+      el.textContent = target;
+    }
+  }, 15);
+}
+
+document.addEventListener('DOMContentLoaded', trackAndLoadVisits);
+
+// visitor counter
+<div id="visitor-counter">
+  <svg
+    class="eye-icon"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <path d="M1.5 12s4-7.5 10.5-7.5S22.5 12 22.5 12s-4 7.5-10.5 7.5S1.5 12 1.5 12z"/>
+    <circle cx="12" cy="12" r="3.5"/>
+  </svg>
+  <span id="visit-number">0</span>
+</div>
