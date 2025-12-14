@@ -275,3 +275,39 @@ window.SocialLinks = {
     copyLink: copySocialLink,
     trackClick: trackSocialClick
 };
+
+// Visitor Counter
+async function trackAndLoadVisits() {
+  try {
+    // Track visit (backend handles IP)
+    fetch('/api/track', { method: 'POST' });
+
+    // Get total visits
+    const res = await fetch('/api/visits');
+    const data = await res.json();
+
+    animateVisitCount(data.total);
+  } catch (err) {
+    console.warn('Visitor counter failed');
+  }
+}
+
+function animateVisitCount(target) {
+  const el = document.getElementById('visit-number');
+  let current = 0;
+
+  const interval = setInterval(() => {
+    current++;
+    el.textContent = current;
+    el.classList.add('count-pop');
+
+    setTimeout(() => el.classList.remove('count-pop'), 150);
+
+    if (current >= target) {
+      clearInterval(interval);
+      el.textContent = target;
+    }
+  }, 15);
+}
+
+document.addEventListener('DOMContentLoaded', trackAndLoadVisits);
